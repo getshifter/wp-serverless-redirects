@@ -11,4 +11,4 @@ function wp_sls_redir_enqueue_script() {
     wp_enqueue_script( 'wp_sls_redirects', plugin_dir_url( __FILE__ ) . 'js/wp-serverless-redirects.js' );
 }
 
-add_action('wp_enqueue_scripts', 'wp_sls_redir_enqueue_script');
+add_action('wp_head', 'wp_sls_redir_enqueue_script');

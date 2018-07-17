@@ -1,5 +1,3 @@
-// window.location.replace("https://getshifter.io");
-
 var redirectJSON = '../../../wp-content/uploads/wp-sls-redirects/redirects.json';
 var xhr = new XMLHttpRequest();
 xhr.open('GET', redirectJSON, true);
@@ -9,8 +7,12 @@ var iterateRedirects = function(data) {
     if (data.hasOwnProperty(key)) {
 
       var redirect = data[key];
-      
-      if ( redirect.url == window.location.pathname ) {
+
+      var current = window.location.pathname
+      var source = new RegExp(redirect.url);
+      var match = source.test(current);
+
+      if (match == true) {
         window.location.replace(redirect.action_data.url);
       }
 
