@@ -12,3 +12,21 @@ function wp_sls_redir_enqueue_script() {
 }
 
 add_action('wp_head', 'wp_sls_redir_enqueue_script');
+
+
+function wp_sls_redir_export() {
+
+    $file = 'redirects.json';
+    $upload_dir = wp_get_upload_dir();
+    $save_path = $upload_dir['basedir'] . '/wp-sls-redirects';
+
+    if (!is_dir($save_path)) {
+        mkdir($save_path, 0755, true);
+    }
+
+    exec('wp redirection export all '. $file .' --format=json');
+    exec('mv ' . $file . ' ' . $save_path );
+
+}
+
+add_action( 'save_post', 'wp_sls_redir_export' );
