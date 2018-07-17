@@ -29,4 +29,6 @@ function wp_sls_redir_export() {
 
 }
 
-add_action( 'save_post', 'wp_sls_redir_export' );
+add_action( 'redirection_redirect_updated', 'wp_sls_redir_export' );
+add_action( 'redirection_save_options', 'wp_sls_redir_export' );
+add_action( 'redirection_redirect_deleted', 'wp_sls_redir_export' );
